@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/hooseating/static/css/main.5f361e03.chunk.css",
+    "main.js": "/hooseating/static/js/main.8cd2c938.chunk.js",
+    "main.js.map": "/hooseating/static/js/main.8cd2c938.chunk.js.map",
+    "runtime-main.js": "/hooseating/static/js/runtime-main.2010144b.js",
+    "runtime-main.js.map": "/hooseating/static/js/runtime-main.2010144b.js.map",
+    "static/js/2.2807bf03.chunk.js": "/hooseating/static/js/2.2807bf03.chunk.js",
+    "static/js/2.2807bf03.chunk.js.map": "/hooseating/static/js/2.2807bf03.chunk.js.map",
+    "index.html": "/hooseating/index.html",
+    "precache-manifest.cf5344781db067fed1c6f3cfb5507a39.js": "/hooseating/precache-manifest.cf5344781db067fed1c6f3cfb5507a39.js",
+    "service-worker.js": "/hooseating/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/hooseating/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.2807bf03.chunk.js.LICENSE.txt": "/hooseating/static/js/2.2807bf03.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/hooseating/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2010144b.js",
+    "static/js/2.2807bf03.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.8cd2c938.chunk.js"
+  ]
+}
