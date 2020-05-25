@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "react-bootstrap/Button";
 
 export default class Map extends Component {
   constructor(props) {
@@ -7,6 +8,10 @@ export default class Map extends Component {
   }
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <Button>This is the Map!</Button>
+      </div>
+    );
   }
 }
