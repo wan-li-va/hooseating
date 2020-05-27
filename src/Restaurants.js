@@ -11,7 +11,9 @@ export default class Restaurants extends Component {
 
   render() {
     let stores = this.props.restaurants.map((restaurant) => {
-      return <Entry restaurant={restaurant} />;
+      return (
+        <Entry className="Entry" restaurant={restaurant} />
+      );
     });
 
     return <div>{stores}</div>;

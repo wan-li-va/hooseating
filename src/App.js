@@ -4,8 +4,6 @@ import Input from "./Input.js";
 import Map from "./Map.js";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Places from "./Places.json";
-import axios from 'axios';
 
 export default class App extends Component {
   constructor(props) {
@@ -25,11 +23,13 @@ export default class App extends Component {
         <div className="Input">
           <Input setRestaurants={this.setRestaurants} />
         </div>
-        <div className="Restaurants">
-          <Restaurants restaurants={this.state.restaurants} />
-        </div>
-        <div className="Map">
-          <Map />
+        <div className="data">
+          <div className="Restaurants">
+            <Restaurants restaurants={this.state.restaurants} />
+          </div>
+          <div className="Map">
+            <Map />
+          </div>
         </div>
       </div>
     );
