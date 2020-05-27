@@ -11,7 +11,7 @@ export default class Entry extends Component {
     return (
       <div>
         <p>Name: {this.props.restaurant.name} </p>
-        <p>Rating: {this.props.restaurant.rating} </p>
+        <p>Rating: {this.props.restaurant.rating}</p>
         <p>Price:{this.props.restaurant.price} </p>
 
         {/* <Card>

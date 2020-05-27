@@ -4,32 +4,58 @@ import Restaurants from "./Restaurants.js";
 import Input from "./Input.js";
 import Map from "./Map.js";
 import "./App.css";
-import Entry from "./Entry.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Places from "./Places.json";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurants: [
-        {
-          name: "SilkThai",
-          rating: 5,
-          price: 12.0,
-        },
-      ],
+      restaurants: [],
     };
   }
+
+  componentDidMount = () => {
+    const axios = require("axios").default;
+
+    axios
+      .get(
+        "https://cors-anywhere.herokuapp.com/maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.0293,-78.4767&radius=30&type=restaurant&key=AIzaSyBQRbOl8Z5HnrY12zURP84C6Tdwsoy-HUI"
+      )
+      .then(function (response) {
+        console.log(response);
+      });
+
+    // var latitude = 38.0293;
+    // var longitude = -78.4767;
+
+    // const url =
+    //   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
+    //   "location=" +
+    //   latitude +
+    //   "," +
+    //   longitude +
+    //   "&radius=30&type=restaurant&key=AIzaSyBQRbOl8Z5HnrY12zURP84C6Tdwsoy-HUI";
+
+    // fetch(url)
+    //   .then((response) => response.json())
+    //   .then((response) =>
+    //     this.setState({
+    //       restaurants: response.results,
+    //     })
+    //   );
+  };
 
   render() {
     return (
       <div>
-        <div>
+        <div className="Input">
           <Input />
         </div>
-        <div>
+        <div className="Restaurants">
           <Restaurants restaurants={this.state.restaurants} />
         </div>
-        <div>
+        <div className="Map">
           <Map />
         </div>
       </div>

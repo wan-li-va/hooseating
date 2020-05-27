@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Entry from "./Entry.js";
-// import Card from "react-bootstrap/Card";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Card from "react-bootstrap/Card";
 
 export default class Restaurants extends Component {
   constructor(props) {
