@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import Restaurants from "./Restaurants.js";
 import Input from "./Input.js";
-import Map from "./Map.js";
+import AppMap from "./AppMap.js";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Places from "./Places.json";
-import axios from 'axios';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       restaurants: [],
+      lat: 0,
+      lng: 0
     };
   }
 
@@ -19,17 +19,25 @@ export default class App extends Component {
     this.setState({ restaurants: results })
   }
 
+  setLatLng = (lat, lng) => {
+    this.setState({
+      lat: lat,
+      lng: lng
+    })
+  }
   render() {
     return (
       <div>
         <div className="Input">
-          <Input setRestaurants={this.setRestaurants} />
+          <Input setRestaurants={this.setRestaurants} setLatLng={this.setLatLng} />
         </div>
-        <div className="Restaurants">
-          <Restaurants restaurants={this.state.restaurants} />
-        </div>
-        <div className="Map">
-          <Map />
+        <div className="data">
+          <div className="Restaurants">
+            <Restaurants restaurants={this.state.restaurants} />
+          </div>
+          <div className="Map">
+            <AppMap lat={this.state.lat} lng={this.state.lng} restaurants={this.state.restaurants} />
+          </div>
         </div>
       </div>
     );
