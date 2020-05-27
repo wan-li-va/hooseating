@@ -1,5 +1,17 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Input {
+  background-color: lightblue;
+}
+rgb(123, 184, 204) .Restaurants {
+  background-color: lightgreen;
+}
+.Map {
+  background-color: lightpink;
 }
 
 .App-logo {
