@@ -22,7 +22,10 @@ export default class Input extends Component {
         this.setState({
           lat: lat,
           long: lng,
-        }, this.getStores)
+        }, () => {
+          this.getStores();
+          this.props.setLatLng(this.state.lat, this.state.long);
+        })
       },
       error => {
         console.log(error);
