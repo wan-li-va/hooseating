@@ -59,7 +59,6 @@
 .Entry {
   display: flex;
   flex-direction: column;
-  background-color: lightgreen;
   outline: grey solid 1px;
   padding-top: 1vh;
   justify-content: center;
