@@ -15,22 +15,15 @@ export default class App extends Component {
     };
   }
 
-  componentDidMount = () => {
-    // axios = require("axios");
-
-    axios.get(
-      "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.0293,-78.4767&radius=500&type=restaurant&key=AIzaSyBQRbOl8Z5HnrY12zURP84C6Tdwsoy-HUI")
-      .then((response) => {
-        console.log(response.data);
-        this.setState({ restaurants: response.data.results })
-      })
+  setRestaurants = (results) => {
+    this.setState({ restaurants: results })
   }
 
   render() {
     return (
       <div>
         <div className="Input">
-          <Input />
+          <Input setRestaurants={this.setRestaurants} />
         </div>
         <div className="Restaurants">
           <Restaurants restaurants={this.state.restaurants} />
