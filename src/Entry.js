@@ -4,7 +4,9 @@ import React, { Component } from "react";
 export default class Entry extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+
+    };
   }
 
   render() {
@@ -12,7 +14,7 @@ export default class Entry extends Component {
       <div>
         <p>Name: {this.props.restaurant.name} </p>
         <p>Rating: {this.props.restaurant.rating}</p>
-        <p>Price:{this.props.restaurant.price} </p>
+        <p>Price:{this.props.restaurant.price_level} </p>
 
         {/* <Card>
           <Card.body>

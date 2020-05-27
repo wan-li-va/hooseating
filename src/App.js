@@ -19,7 +19,7 @@ export default class App extends Component {
     // axios = require("axios");
 
     axios.get(
-      "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.0293,-78.4767&radius=30&type=restaurant&key=AIzaSyBQRbOl8Z5HnrY12zURP84C6Tdwsoy-HUI")
+      "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.0293,-78.4767&radius=500&type=restaurant&key=AIzaSyBQRbOl8Z5HnrY12zURP84C6Tdwsoy-HUI")
       .then((response) => {
         console.log(response.data);
         this.setState({ restaurants: response.data.results })
