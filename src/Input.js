@@ -15,7 +15,11 @@ export default class Input extends Component {
     };
   }
   onClick = () => {
-    Geocode.setApiKey("AIzaSyBQRbOl8Z5HnrY12zURP84C6Tdwsoy-HUI")
+    require('dotenv').config();
+    const API = process.env.REACT_APP_KEY;
+    console.log(API);
+
+    Geocode.setApiKey(API)
     Geocode.fromAddress(this.state.address).then(
       response => {
         let { lat, lng } = response.results[0].geometry.location;
@@ -34,11 +38,15 @@ export default class Input extends Component {
     )
   }
   getStores = () => {
+    require('dotenv').config();
+    const API = process.env.REACT_APP_KEY;
+    console.log(API);
+
     console.log(this.state.lat, this.state.long);
     axios.get(
       "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
       + this.state.lat + "," + this.state.long +
-      "&radius=" + (this.state.radius / .00062137) + "&type=restaurant&opennow&key=AIzaSyBQRbOl8Z5HnrY12zURP84C6Tdwsoy-HUI")
+      "&radius=" + (this.state.radius / .00062137) + "&type=restaurant&opennow&key=" + API)
       .then((response) => {
         console.log(response.data);
         this.props.setRestaurants(response.data.results);
