@@ -14,6 +14,9 @@ export default class Restaurants extends Component {
 
   handleFilterChange = filterOption => {
     ((filterOption !== "distance") ? this.setState({ isFiltering: true }) : this.setState({ isFiltering: false }))
+    console.log(filterOption)
+    console.log(filterOption !== "distance")
+    console.log(this.state.isFiltering)
     this.setState({ filterBy: filterOption })
   }
 
@@ -21,25 +24,36 @@ export default class Restaurants extends Component {
     var stores = [...this.props.restaurants];
     if (this.state.isFiltering) {
       if (this.state.filterBy === "price") {
-        stores.sort(function (store1, store2) {
-          return store2.price_level - store1.price_level;
-        })
+        return (
+          stores.sort(function (store1, store2) {
+            var price1 = store1.price_level;
+            var price2 = store2.price_level;
+            if (store1.price_level === undefined) { price1 = 0 }
+            if (store2.price_level === undefined) { price2 = 0 }
+            return price2 - price1;
+          })
+        )
       }
       else {
-        stores.sort(function (store1, store2) {
-          return store2.rating - store1.rating;
-        })
+        return (
+          stores.sort(function (store1, store2) {
+            return store2.rating - store1.rating;
+          }))
       }
     }
     else {
-      stores.sort(function (store1, store2) {
-        return store2.name - store1.name;
-      })
+      return (
+        stores.sort(function (store1, store2) {
+          return store2.name - store1.name;
+        }))
     }
   }
 
   render() {
-    let stores = this.props.restaurants.map((restaurant) => {
+    let sortedStores = this.sortBy();
+    console.log(sortedStores)
+    let stores = sortedStores.map((restaurant) => {
+      console.log(restaurant.name + ", " + restaurant.price_level)
       return (
         <Entry className="Entry" restaurant={restaurant} />
       );
@@ -48,7 +62,7 @@ export default class Restaurants extends Component {
     return (
       <div>
         <h4>Nearby, open restaurants: </h4>
-        <div>{stores}</div>
+        <div className="cardsList">{stores}</div>
         <div>
           <Filter handleFilterChange={this.handleFilterChange} restaurants={this.props.restaurants} />
         </div>

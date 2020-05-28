@@ -36,7 +36,11 @@ export default class Entry extends Component {
                   ((this.props.restaurant.price_level === 2) ?
                     <em>Price: $$</em>
                     :
-                    <em>Price: $$$</em>
+                    ((this.props.restaurant.price_level === 3) ?
+                      <em>Price: $$$</em>
+                      :
+                      <em>Price: N/A</em>
+                    )
                   )
                 }
               </Card.Text>
