@@ -1,12 +1,44 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
+import * as geolib from 'geolib';
 
 export default class Entry extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      distance: null,
     };
+  }
+
+  componentDidMount = () => {
+    // console.log(geolib)
+      var dist = geolib.getDistance({
+        latitude: this.props.restaurant.geometry.location.lat,
+        longitude: this.props.restaurant.geometry.location.lng,
+      },
+      {
+        latitude: this.props.lat,
+        longitude: this.props.lng,
+      })*0.000621371;
+
+      dist = Math.round((dist + Number.EPSILON) * 100) / 100;
+      this.setState({ distance: dist })
+
+      const entry = {
+        name: this.props.restaurant.name,
+        geometry: this.props.restaurant.geometry,
+        opening_hours: this.props.restaurant.opening_hours,
+        photos: this.props.restaurant.photos,
+        price_level: this.props.restaurant.price_level,
+        rating: this.props.restaurant.rating,
+        types: this.props.restaurant.types,
+        user_ratings_total: this.props.restaurant.user_ratings_total,
+        distance: dist
+      }
+
+      // const entry = this.props.restaurant.concat([{ distance: dist }])
+      console.log(entry)
+      this.props.setDistance(entry);
   }
 
   render() {
@@ -30,6 +62,7 @@ export default class Entry extends Component {
               <Card.Text>
                 <em>Name: {this.props.restaurant.name} </em>
                 <em>Rating: {this.props.restaurant.rating}</em>
+                <em>Number of ratings: {this.props.restaurant.user_ratings_total}</em>
                 {(this.props.restaurant.price_level === 1) ?
                   <em>Price: $</em>
                   :
@@ -43,6 +76,7 @@ export default class Entry extends Component {
                     )
                   )
                 }
+                <em>Distance: {this.state.distance} miles away</em>
               </Card.Text>
             </Card.Body>
           </Card>
