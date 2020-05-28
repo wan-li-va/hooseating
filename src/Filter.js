@@ -6,10 +6,10 @@ export default class Filter extends Component {
         this.state = {}
     }
 
-    handleSelectChange = () => {
-        let filterSelect = document.getElementById("filterBy").value;
-        this.props.handleSelectChange(filterSelect);
-    }
+    // handleSelectChange = () => {
+    //     let filterSelect = document.getElementById("filterBy").value;
+    //     this.props.handleSelectChange(filterSelect);
+    // }
 
     render() {
         return (

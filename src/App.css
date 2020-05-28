@@ -43,12 +43,25 @@
   max-width: 40vw;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
+  
   height: 80vh;
   margin-bottom: 3vh;
   margin-right: 5vw;
   margin-left: 2vw;
 }
+
+.cardsList {
+  flex: 1;
+  max-width: 40vw;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  height: 70vh;
+  margin-bottom: 3vh;
+  margin-right: 5vw;
+  margin-left: 2vw;
+}
+
 .Map {
   flex: 1;
   background-color: lightpink;
