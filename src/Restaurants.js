@@ -44,18 +44,20 @@ export default class Restaurants extends Component {
     else {
       return (
         stores.sort(function (store1, store2) {
-          return store2.name - store1.name;
+          return store2.distance - store1.distance;
         }))
     }
   }
 
   render() {
     let sortedStores = this.sortBy();
-    console.log(sortedStores)
     let stores = sortedStores.map((restaurant) => {
-      console.log(restaurant.name + ", " + restaurant.price_level)
       return (
-        <Entry className="Entry" restaurant={restaurant} />
+        <Entry className="Entry" 
+        restaurant={restaurant} 
+        lat={this.props.lat} 
+        lng={this.props.lng} 
+        setDistance={this.props.setDistance} />
       );
     });
 

@@ -25,6 +25,15 @@ export default class App extends Component {
       lng: lng
     })
   }
+
+  setDistance = entry => {
+    var updatedRestaurants = this.state.restaurants.filter(
+      thisEntry => thisEntry.name !== entry.name
+    )
+    updatedRestaurants[updatedRestaurants.length] = entry;
+    this.setState ({restaurants : updatedRestaurants});
+  }
+
   render() {
     return (
       <div>
@@ -33,7 +42,10 @@ export default class App extends Component {
         </div>
         <div className="data">
           <div className="Restaurants">
-            <Restaurants restaurants={this.state.restaurants} />
+            <Restaurants restaurants={this.state.restaurants} 
+            lat={this.state.lat} 
+            lng={this.state.lng} 
+            setDistance={this.setDistance} />
           </div>
           <div className="Map">
             <AppMap lat={this.state.lat} lng={this.state.lng} restaurants={this.state.restaurants} />
