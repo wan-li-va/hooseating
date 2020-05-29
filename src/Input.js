@@ -31,6 +31,7 @@ export default class Input extends Component {
           this.props.setLatLng(this.state.lat, this.state.long);
         })
       },
+
       error => {
         console.log(error);
         this.setState({ error: "Please input a valid place or address" })
@@ -52,6 +53,7 @@ export default class Input extends Component {
         this.props.setRestaurants(response.data.results);
       })
   }
+  
   render() {
     return (
       <div className="Input">
@@ -65,6 +67,28 @@ export default class Input extends Component {
             <label>Enter radius: </label>
             <input type="number" min="0" max="30" onChange={e => this.setState({ radius: e.target.value })} />
           </div>
+          <div>
+          <div className="radio">
+          <label>
+            <input type="radio" value="OnlyRestaraunts" checked={true} />
+            Only Restaraunts
+          </label>
+
+          <label>
+            <input type="radio" value="OnlyBars" />
+            Only Bars
+          </label>
+        </div>
+    
+        <label>
+          Filter by:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="Price range: Low to Mid">Price range: Low to Mid</option>
+            <option value="Price range: Mid to High">Price range: Mid to High</option>
+          </select>
+        </label>
+      
+      </div>
           <Button onClick={this.onClick}>Get Restaurants!</Button>
           <p>{this.state.error}</p>
         </div>
