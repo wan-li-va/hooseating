@@ -11,7 +11,9 @@ export default class Input extends Component {
       error: "",
       radius: 1,
       lat: 0,
-      long: 0
+      long: 0,
+      selectedOption: "OnlyRestaraunts"
+      
     };
   }
   onClick = () => {
@@ -31,6 +33,7 @@ export default class Input extends Component {
           this.props.setLatLng(this.state.lat, this.state.long);
         })
       },
+
       error => {
         console.log(error);
         this.setState({ error: "Please input a valid place or address" })
@@ -52,6 +55,12 @@ export default class Input extends Component {
         this.props.setRestaurants(response.data.results);
       })
   }
+  handleOptionChange = changeEvent => {
+    this.setState({
+      selectedOption: changeEvent.target.value
+    });
+  };
+  
   render() {
     return (
       <div className="Input">
@@ -65,6 +74,32 @@ export default class Input extends Component {
             <label>Enter radius: </label>
             <input type="number" min="0" max="30" onChange={e => this.setState({ radius: e.target.value })} />
           </div>
+          <div>
+          <div className="radio">
+          <label>
+            <input type="radio" value="OnlyRestaraunts" checked={this.state.selectedOption === "OnlyRestaraunts"}
+            onChange = {this.handleOptionChange} />
+            Only Restaraunts
+          </label>
+
+          <label>
+            <input type="radio" value="OnlyBars" checked={this.state.selectedOption ==="OnlyBars"}
+            onChange = {this.handleOptionChange}/>
+            Only Bars
+          </label>
+
+          
+        </div>
+    
+        <label>
+          Filter by:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="Price range: Low to Mid">Price range: Low to Mid</option>
+            <option value="Price range: Mid to High">Price range: Mid to High</option>
+          </select>
+        </label>
+      
+      </div>
           <Button onClick={this.onClick}>Get Restaurants!</Button>
           <p>{this.state.error}</p>
         </div>
