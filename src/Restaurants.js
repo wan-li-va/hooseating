@@ -8,14 +8,14 @@ export default class Restaurants extends Component {
     super(props);
     this.state = {
       isFiltering: false,
-      filterBy: "distance",
+      filterBy: "default",
     };
   }
 
   handleFilterChange = filterOption => {
-    ((filterOption !== "distance") ? this.setState({ isFiltering: true }) : this.setState({ isFiltering: false }))
+    ((filterOption !== "default") ? this.setState({ isFiltering: true }) : this.setState({ isFiltering: false }))
     console.log(filterOption)
-    console.log(filterOption !== "distance")
+    console.log(filterOption !== "default")
     console.log(this.state.isFiltering)
     this.setState({ filterBy: filterOption })
   }
