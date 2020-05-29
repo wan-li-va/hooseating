@@ -53,16 +53,16 @@ export default class Restaurants extends Component {
     let sortedStores = this.sortBy();
     let stores = sortedStores.map((restaurant) => {
       return (
-        <Entry className="Entry" 
-        restaurant={restaurant} 
-        lat={this.props.lat} 
-        lng={this.props.lng} 
-        setDistance={this.props.setDistance} />
+        <Entry className="Entry"
+          restaurant={restaurant}
+          lat={this.props.lat}
+          lng={this.props.lng}
+          setDistance={this.props.setDistance} />
       );
     });
 
     return (
-      <div>
+      <div className="Restaurants">
         <h4>Nearby, open restaurants: </h4>
         <div className="cardsList">{stores}</div>
         <div>

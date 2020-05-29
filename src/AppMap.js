@@ -34,16 +34,17 @@ export default class AppMap extends Component {
         >
           <Popup>
             <Card border="light" bg="light">
-              <Card.Header>{restaurant.name}</Card.Header>
-              <Card.Img
-                variant="bottom"
-                src={
-                  "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" +
-                  restaurant.photos[0].photo_reference +
-                  "&key=" +
-                  this.API
-                }
-              />
+              <Card.Header><h6>{restaurant.name}</h6><br />{restaurant.vicinity}</Card.Header>
+              {restaurant.photos !== undefined ? (
+                <Card.Img
+                  variant="bottom"
+                  src={
+                    "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" +
+                    restaurant.photos[0].photo_reference +
+                    "&key=" +
+                    this.API
+                  }
+                />) : <h3>No photo available</h3>}
             </Card>
           </Popup>
         </Marker>
@@ -52,7 +53,7 @@ export default class AppMap extends Component {
     return (
       <Map
         viewport={this.state.viewport}
-        style={{ width: "100%", height: "80vh" }}
+        style={{ width: "73vw", height: "82vh" }}
       >
         <TileLayer
           attribution='copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
