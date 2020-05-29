@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Map, TileLayer, Popup } from "react-leaflet";
+import { Map, TileLayer, Popup, Marker } from "react-leaflet";
+import Card from "react-bootstrap/Card";
 export default class AppMap extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +10,8 @@ export default class AppMap extends Component {
         zoom: 15,
       },
     };
+    require("dotenv").config();
+    this.API = process.env.REACT_APP_KEY;
   }
 
   componentDidUpdate(prevProps) {
@@ -21,6 +24,31 @@ export default class AppMap extends Component {
     }
   }
   render() {
+    let markers = this.props.restaurants.map((restaurant) => {
+      return (
+        <Marker
+          position={[
+            restaurant.geometry.location.lat,
+            restaurant.geometry.location.lng,
+          ]}
+        >
+          <Popup>
+            <Card border="light" bg="light">
+              <Card.Header>{restaurant.name}</Card.Header>
+              <Card.Img
+                variant="bottom"
+                src={
+                  "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" +
+                  restaurant.photos[0].photo_reference +
+                  "&key=" +
+                  this.API
+                }
+              />
+            </Card>
+          </Popup>
+        </Marker>
+      );
+    });
     return (
       <Map
         viewport={this.state.viewport}
@@ -30,6 +58,7 @@ export default class AppMap extends Component {
           attribution='copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {markers}
       </Map>
     );
   }
