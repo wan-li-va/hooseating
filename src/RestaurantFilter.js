@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/Button";
+import ToggleButton from "react-bootstrap/Button";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import './RestaurantFilter.css';
 
 export default class RestaurantFilter extends Component {
@@ -12,61 +14,63 @@ export default class RestaurantFilter extends Component {
         }
     }
 
-    handleRestarauntChange = changeEvent => {
+    handleRestaurantChange = (e) => {
+        console.log(e.target.value)
         this.setState({
-            RestaurantBar: changeEvent.target.value
+            RestaurantBar: e.target.value
         });
-        this.props.changeFilter(changeEvent.target.value, this.state.Price)
+        this.props.changeFilter(e.target.value, this.state.Price)
     };
 
-    handlePriceChange = changeEvent => {
+    handlePriceChange = (e) => {
         this.setState({
-            Price: changeEvent.target.value
+            Price: e.target.value
         });
-        this.props.changeFilter(this.state.RestaurantBar, changeEvent.target.value)
+        this.props.changeFilter(this.state.RestaurantBar, e.target.value)
     };
+
+
+
 
     render() {
         return (
-            <div className="RestaurantFilter">
-                <div className="RestaurantBar">
-                    <div className="radio">
-                        <label>
-                            <input type="radio" value="restaurant" checked={this.state.RestaurantBar === "restaurant"}
-                                onChange={this.handleRestarauntChange} />
-            Only Restaurants
-          </label>
-                        <label>
-                            <input type="radio" value="bar" checked={this.state.RestaurantBar === "bar"}
-                                onChange={this.handleRestarauntChange} />
-            Only Bars
-          </label>
-                    </div>
-                    <div className="priceOption">
-                        <label>
-                            <input type="radio" value="1" checked={this.state.Price === "1"}
-                                onChange={this.handlePriceChange} />
-            Price range: Low
-          </label>
-                        <label>
-                            <input type="radio" value="2" checked={this.state.Price === "2"}
-                                onChange={this.handlePriceChange} />
-          Price range: Mid
-          </label>
-                        <label>
-                            <input type="radio" value="3" checked={this.state.Price === "3"}
-                                onChange={this.handlePriceChange} />
-          Price range: High
-          </label>
-                        <label>
-                            <input type="radio" value="4" checked={this.state.Price === "4"}
-                                onChange={this.handlePriceChange} />
-          Price range: All
-          </label>
-                    </div>
+            <div className="radio">
 
-                </div>
-            </div>
+                <ToggleButtonGroup name="restaurantBar" onClick={this.handleRestaurantChange} className="restbarChange">
+                    <ToggleButton size="sm" type="radio" value="restaurant" checked={this.state.RestaurantBar === "restaurant"} >
+                        Only Restaurants
+            </ToggleButton>
+                    <ToggleButton size="sm" type="radio" value="bar" checked={this.state.RestaurantBar === "bar"} >
+                        Only Bars
+            </ToggleButton>
+
+                </ToggleButtonGroup>
+
+
+                <ToggleButtonGroup name="priceChange" onClick={this.handlePriceChange} >
+                    <ToggleButton size="sm" type="radio" value="1" checked={this.state.Price === "1"} >
+                        Price: $
+            </ToggleButton>
+
+                    <ToggleButton size="sm" type="radio" value="2" checked={this.state.Price === "2"} >
+                        Price: $$
+            </ToggleButton>
+
+                    <ToggleButton size="sm" type="radio" value="3" checked={this.state.Price === "3"}>
+                        Price: $$$
+            </ToggleButton>
+
+                    <ToggleButton size="sm" type="radio" value="4" checked={this.state.Price === "4"} >
+                        Price Range: All
+            </ToggleButton>
+
+                </ToggleButtonGroup>
+
+
+
+            </div >
+
+
         )
     }
 }

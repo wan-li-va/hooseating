@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
+import Navbar from "react-bootstrap/Navbar";
 import axios from 'axios';
 import Geocode from 'react-geocode';
 import RestaurantFilter from './RestaurantFilter.js';
+import "./Input.css";
 
 export default class Input extends Component {
   constructor(props) {
     super(props);
     this.state = {
       address: "",
-      error: "",
       radius: 1,
       lat: 0,
       long: 0,
@@ -37,14 +38,14 @@ export default class Input extends Component {
 
       error => {
         console.log(error);
-        this.setState({ error: "Please input a valid place or address" })
+        //this.setState({ error: "Please input a valid place or address" })
+        alert("Please input a valid place or address");
       }
     )
   }
   getStores = () => {
     require('dotenv').config();
     const API = process.env.REACT_APP_KEY;
-    console.log(this.state.price)
     axios.get(
       "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
       + this.state.lat + "," + this.state.long +
@@ -65,25 +66,42 @@ export default class Input extends Component {
 
   render() {
     return (
-      <div className="Input">
-        <h3>HoosEating?</h3>
-        <div className="InputComponents">
-          <div>
-            <label>Address: </label>
-            <input type="text" onChange={e => this.setState({ address: e.target.value })} />
-          </div>
-          <div className="radius">
-            <label>Enter radius: </label>
-            <input type="number" min="0" max="30" onChange={e => this.setState({ radius: e.target.value })} />
-          </div>
+      <Navbar bg="dark" variant="dark" className="navBar">
+        <Navbar.Brand className="logo">HoosEating?</Navbar.Brand>
+        <label className="navbarLabel">Address: </label>
+        <input
+          type="text"
+          onChange={(e) => this.setState({ address: e.target.value })}
+        />
+        <label className="navbarLabel">Enter radius: </label>
+        <input
+          className="radiusInput"
+          type="number"
+          min="0"
+          max="30"
+          onChange={(e) => this.setState({ radius: e.target.value })}
+        />
+        <RestaurantFilter changeFilter={this.changeFilter} />
+        <Button size="lg" className="getPlaces" variant="success" onClick={this.onClick}>Get Places!</Button>
+      </Navbar>
+      // <div className="Input">
+      //   <h3>HoosEating?</h3>
+      //   <div className="InputComponents">
+      //     <div>
+      //       <label>Address: </label>
+      //       <input type="text" onChange={e => this.setState({ address: e.target.value })} />
+      //     </div>
+      //     <div className="radius">
+      //       <label>Enter radius: </label>
+      //       <input type="number" min="0" max="30" onChange={e => this.setState({ radius: e.target.value })} />
+      //     </div>
 
-          <RestaurantFilter
-            changeFilter={this.changeFilter} />
+      //     <RestaurantFilter
+      //       changeFilter={this.changeFilter} />
 
-          <Button onClick={this.onClick}>Get Places!</Button>
-          <p>{this.state.error}</p>
-        </div>
-      </div >
+      //     <Button onClick={this.onClick}>Get Places!</Button>
+      //   </div>
+      // </div >
     )
   }
 }

@@ -12,9 +12,10 @@
 .data {
   display: flex;
   flex-direction: row;
+  height: 75vh;
 }
 
-.Input {
+/* .Input {
   display: flex;
   flex-direction: column;
   background-color: lightblue;
@@ -25,13 +26,8 @@
   margin-top: 2vh;
   margin-left: 2vw;
   margin-right: 2vw;
-}
+} */
 
-.InputComponents {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 
 .radius {
   margin-left: 2vw;
@@ -39,41 +35,47 @@
 }
 
 .Restaurants {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  max-width: 40vw;
+  width: 30vw;
   justify-content: center;
   align-items: center;
   
-  height: 80vh;
+  margin-top: 5vh;
   margin-bottom: 3vh;
-  margin-right: 5vw;
-  margin-left: 2vw;
 }
 
 .cardsList {
-  flex: 1;
-  max-width: 40vw;
+  width: 25vw;
   justify-content: center;
   align-items: center;
   overflow-y: auto;
   height: 70vh;
-  margin-bottom: 3vh;
   margin-right: 5vw;
-  margin-left: 2vw;
+  margin-left: 6vw;
+  margin-bottom: 5vh;
 }
 
 .Map {
-  flex: 1;
-  background-color: lightpink;
-  height: 80vh;
-  margin-right: 2vw;
+  display: flex;
+  flex: 2;
+  margin-right: 3vw;
+  width: 45vw;
 }
 
 .Entry {
   display: flex;
   flex-direction: column;
-  outline: grey solid 1px;
   padding-top: 1vh;
   justify-content: center;
   align-items: center;
+}
+
+.navBar {
+  margin-bottom: 5vh;
+}
+
+.sortLabel {
+  margin-right: 1vw;
 }
