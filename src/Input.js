@@ -11,7 +11,9 @@ export default class Input extends Component {
       error: "",
       radius: 1,
       lat: 0,
-      long: 0
+      long: 0,
+      selectedOption: "OnlyRestaraunts"
+      
     };
   }
   onClick = () => {
@@ -53,6 +55,11 @@ export default class Input extends Component {
         this.props.setRestaurants(response.data.results);
       })
   }
+  handleOptionChange = changeEvent => {
+    this.setState({
+      selectedOption: changeEvent.target.value
+    });
+  };
   
   render() {
     return (
@@ -70,14 +77,18 @@ export default class Input extends Component {
           <div>
           <div className="radio">
           <label>
-            <input type="radio" value="OnlyRestaraunts" checked={true} />
+            <input type="radio" value="OnlyRestaraunts" checked={this.state.selectedOption === "OnlyRestaraunts"}
+            onChange = {this.handleOptionChange} />
             Only Restaraunts
           </label>
 
           <label>
-            <input type="radio" value="OnlyBars" />
+            <input type="radio" value="OnlyBars" checked={this.state.selectedOption ==="OnlyBars"}
+            onChange = {this.handleOptionChange}/>
             Only Bars
           </label>
+
+          
         </div>
     
         <label>
