@@ -32,6 +32,7 @@ export default class App extends Component {
     )
     updatedRestaurants[updatedRestaurants.length] = entry;
     this.setState ({restaurants : updatedRestaurants});
+    // console.log(updatedRestaurants)
   }
 
   render() {

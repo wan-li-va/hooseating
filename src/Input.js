@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import Geocode from 'react-geocode';
+import RestaurantFilter from './RestaurantFilter.js';
 
 export default class Input extends Component {
   constructor(props) {
@@ -12,14 +13,14 @@ export default class Input extends Component {
       radius: 1,
       lat: 0,
       long: 0,
-      selectedOption: "OnlyRestaraunts"
-      
+      RestaurantBar: "restaurant",
+      price: "",
     };
   }
   onClick = () => {
     require('dotenv').config();
     const API = process.env.REACT_APP_KEY;
-    console.log(API);
+    // console.log(API);
 
     Geocode.setApiKey(API)
     Geocode.fromAddress(this.state.address).then(
@@ -43,24 +44,25 @@ export default class Input extends Component {
   getStores = () => {
     require('dotenv').config();
     const API = process.env.REACT_APP_KEY;
-    console.log(API);
-
-    console.log(this.state.lat, this.state.long);
+    console.log(this.state.price)
     axios.get(
       "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
       + this.state.lat + "," + this.state.long +
-      "&radius=" + (this.state.radius / .00062137) + "&type=restaurant&opennow&key=" + API)
+      "&radius=" + (this.state.radius / .00062137) + "&type=" + this.state.RestaurantBar + this.state.price + "&opennow&key=" + API)
       .then((response) => {
         console.log(response.data);
         this.props.setRestaurants(response.data.results);
       })
   }
-  handleOptionChange = changeEvent => {
-    this.setState({
-      selectedOption: changeEvent.target.value
-    });
-  };
-  
+
+  changeFilter = (restaurantOption, priceOption) => {
+    (priceOption === "4") ? this.setState({ RestaurantBar: restaurantOption, price: "" }) :
+      this.setState({
+        RestaurantBar: restaurantOption,
+        price: "&minprice=" + priceOption + "&maxprice=" + priceOption,
+      })
+  }
+
   render() {
     return (
       <div className="Input">
@@ -74,36 +76,14 @@ export default class Input extends Component {
             <label>Enter radius: </label>
             <input type="number" min="0" max="30" onChange={e => this.setState({ radius: e.target.value })} />
           </div>
-          <div>
-          <div className="radio">
-          <label>
-            <input type="radio" value="OnlyRestaraunts" checked={this.state.selectedOption === "OnlyRestaraunts"}
-            onChange = {this.handleOptionChange} />
-            Only Restaraunts
-          </label>
 
-          <label>
-            <input type="radio" value="OnlyBars" checked={this.state.selectedOption ==="OnlyBars"}
-            onChange = {this.handleOptionChange}/>
-            Only Bars
-          </label>
+          <RestaurantFilter
+            changeFilter={this.changeFilter} />
 
-          
-        </div>
-    
-        <label>
-          Filter by:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="Price range: Low to Mid">Price range: Low to Mid</option>
-            <option value="Price range: Mid to High">Price range: Mid to High</option>
-          </select>
-        </label>
-      
-      </div>
-          <Button onClick={this.onClick}>Get Restaurants!</Button>
+          <Button onClick={this.onClick}>Get Places!</Button>
           <p>{this.state.error}</p>
         </div>
-      </div>
+      </div >
     )
   }
 }

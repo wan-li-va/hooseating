@@ -11,7 +11,7 @@ export default class Filter extends Component {
             <div className="Filter">
                 <label margin-right="5px">Sort by </label>
                 <select id="filterBy" onChange={e => this.props.handleFilterChange(e.target.value)}>
-                    <option value="distance">Distance</option>
+                    <option value="default">Sort By... </option>
                     <option value="price">Price</option>
                     <option value="rating">Rating</option>
                 </select>

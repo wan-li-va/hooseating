@@ -11,7 +11,6 @@ export default class Entry extends Component {
   }
 
   componentDidMount = () => {
-    // console.log(geolib)
       var dist = geolib.getDistance({
         latitude: this.props.restaurant.geometry.location.lat,
         longitude: this.props.restaurant.geometry.location.lng,
@@ -37,7 +36,7 @@ export default class Entry extends Component {
       }
 
       // const entry = this.props.restaurant.concat([{ distance: dist }])
-      console.log(entry)
+      // console.log(entry)
       this.props.setDistance(entry);
   }
 
