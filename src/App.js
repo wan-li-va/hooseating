@@ -31,8 +31,7 @@ export default class App extends Component {
       thisEntry => thisEntry.name !== entry.name
     )
     updatedRestaurants[updatedRestaurants.length] = entry;
-    this.setState ({restaurants : updatedRestaurants});
-    // console.log(updatedRestaurants)
+    this.setState({ restaurants: updatedRestaurants });
   }
 
   render() {
@@ -43,10 +42,10 @@ export default class App extends Component {
         </div>
         <div className="data">
           <div className="Restaurants">
-            <Restaurants restaurants={this.state.restaurants} 
-            lat={this.state.lat} 
-            lng={this.state.lng} 
-            setDistance={this.setDistance} />
+            <Restaurants restaurants={this.state.restaurants}
+              lat={this.state.lat}
+              lng={this.state.lng}
+              setDistance={this.setDistance} />
           </div>
           <div className="Map">
             <AppMap lat={this.state.lat} lng={this.state.lng} restaurants={this.state.restaurants} />

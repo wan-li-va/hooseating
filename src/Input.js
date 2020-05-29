@@ -21,7 +21,6 @@ export default class Input extends Component {
   onClick = () => {
     require('dotenv').config();
     const API = process.env.REACT_APP_KEY;
-    // console.log(API);
 
     Geocode.setApiKey(API)
     Geocode.fromAddress(this.state.address).then(
@@ -38,7 +37,6 @@ export default class Input extends Component {
 
       error => {
         console.log(error);
-        //this.setState({ error: "Please input a valid place or address" })
         alert("Please input a valid place or address");
       }
     )
@@ -84,24 +82,6 @@ export default class Input extends Component {
         <RestaurantFilter changeFilter={this.changeFilter} />
         <Button size="lg" className="getPlaces" variant="success" onClick={this.onClick}>Get Places!</Button>
       </Navbar>
-      // <div className="Input">
-      //   <h3>HoosEating?</h3>
-      //   <div className="InputComponents">
-      //     <div>
-      //       <label>Address: </label>
-      //       <input type="text" onChange={e => this.setState({ address: e.target.value })} />
-      //     </div>
-      //     <div className="radius">
-      //       <label>Enter radius: </label>
-      //       <input type="number" min="0" max="30" onChange={e => this.setState({ radius: e.target.value })} />
-      //     </div>
-
-      //     <RestaurantFilter
-      //       changeFilter={this.changeFilter} />
-
-      //     <Button onClick={this.onClick}>Get Places!</Button>
-      //   </div>
-      // </div >
     )
   }
 }
